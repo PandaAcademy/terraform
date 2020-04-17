@@ -3,11 +3,12 @@ provider "aws" {
 }
 
 resource "aws_instance" "panda" {
-  count             = 2
-  ami               = "ami-2757f631"
-  instance_type     = "t2.micro"
-  availability_zone = "us-east-1a"
-  key_name          = "klucz"
+  count                     = 2
+  ami                       = "ami-07ebfd5b3428b6f4d"
+  instance_type             = "t2.micro"
+  availability_zone         = var.ec2_availability_zone
+  key_name                  = var.aws_key_name
+  vpc_security_group_ids    = ["${var.security_group}"]
 
   connection {
     host        = self.public_ip
@@ -27,8 +28,8 @@ resource "aws_instance" "panda" {
 
 resource "aws_elb" "panda" {
   name               = "panda-load-balancer"
-  availability_zones = ["us-east-1a", "us-east-1b"]
-  security_groups    = ["sg-e745f6bf"]
+  availability_zones = var.elb_availability_zones
+  security_groups   = ["${var.security_group}"]
 
   health_check {
     healthy_threshold   = 2
