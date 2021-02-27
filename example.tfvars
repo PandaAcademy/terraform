@@ -1,2 +1,2 @@
-security_group = "sg-e745f6bf"
-aws_key_name = "klucz"
+aws_key_name = "panda_kurs"
+ssh_key_path="~/Downloads/panda_kurs.pem"
