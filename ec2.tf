@@ -1,6 +1,6 @@
 resource "aws_instance" "panda" {
   count                     = length(var.availability_zones)
-  ami                       = "ami-0885b1f6bd170450c"
+  ami                       = "ami-09e67e426f25ce0d7"
   instance_type             = "t2.micro"
   availability_zone         = var.availability_zones[count.index] 
   key_name                  = var.aws_key_name
